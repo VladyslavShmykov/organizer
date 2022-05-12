@@ -1,9 +1,9 @@
 <p class="flex aic jcc">
 
-  <i (click)="onChangeDate(-1)" class="material-icons">arrow_left</i>
+  <i (click)="onChangeDate(-1)" class="material-icons arrow-icon">arrow_left</i>
 
-  <span>{{ getDate | moment }}</span>
+  <span class="date">{{ getDate | moment }}</span>
 
-  <i (click)="onChangeDate(1)" class="material-icons">arrow_right</i>
+  <i (click)="onChangeDate(1)" class="material-icons arrow-icon">arrow_right</i>
 
 </p>
