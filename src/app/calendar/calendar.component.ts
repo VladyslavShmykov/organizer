@@ -29,7 +29,9 @@ export class CalendarComponent implements OnInit, OnDestroy {
   }
 
   public onSelectDay(day: IDay): void {
-    this.dateService.changeDate(day.value);
+    if (!day.selected) {
+      this.dateService.changeDate(day.value);
+    }
   }
 
   ngOnDestroy(): void {

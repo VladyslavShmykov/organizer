@@ -1,25 +1,27 @@
-<table>
+<table class="calendar-days">
   <thead>
   <tr>
-    <th>Mon</th>
-    <th>Tue</th>
-    <th>Wen</th>
-    <th>Thu</th>
-    <th>Fri</th>
-    <th>Sat</th>
-    <th>Sun</th>
+    <th class="cell">Mon</th>
+    <th class="cell">Tue</th>
+    <th class="cell">Wen</th>
+    <th class="cell">Thu</th>
+    <th class="cell">Fri</th>
+    <th class="cell">Sat</th>
+    <th class="cell">Sun</th>
   </tr>
   </thead>
 
   <tbody>
   <tr *ngFor="let week of calendar">
     <td
+      class="cell day-cell"
       *ngFor="let day of week.days"
       (click)="onSelectDay(day)"
+      [class.selected]="day.selected"
       [class.disabled]="day.disabled">
       <span
-        [class.active]="day.active"
-        [class.selected]="day.selected">
+        class="date"
+        [class.active]="day.active">
         {{day.value | moment: 'ddd DD'}}
       </span>
     </td>

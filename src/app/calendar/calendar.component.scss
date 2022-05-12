@@ -1,14 +1,14 @@
-table {
+.calendar-days {
   width: 100%;
   margin-bottom: 1rem;
   border-collapse: collapse;
 
-  td, th {
+  .cell {
     border: 1px solid black;
     padding: .5rem 1rem;
   }
 
-  td {
+  .day-cell {
     text-align: center;
     transition: all .2s;
 
@@ -16,7 +16,7 @@ table {
       opacity: .5;
     }
 
-    &:hover:not(.disabled) {
+    &:hover:not(.disabled):not(.selected) {
       background-color: #eee;
       cursor: pointer;
     }
@@ -28,6 +28,11 @@ table {
   }
 
   .selected {
-    color: blue;
+    background-color: rgba(0, 0, 255, 0.05);
+    cursor: default;
+
+    .date {
+      color: blue;
+    }
   }
 }
