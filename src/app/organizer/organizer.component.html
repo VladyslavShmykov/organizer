@@ -1,1 +1,27 @@
-<p>organizer works!</p>
+<section>
+  <header>
+    Organizer: <strong>{{getDate | moment: 'DD MMMM, YYYY'}}</strong>
+    <hr>
+  </header>
+
+
+  <main>
+    <ul>
+      <li class="task flex jcsb aic">
+        <span>
+          <strong>1</strong>
+          asdasd
+        </span>
+        <button class="btn btn-primary">remove</button>
+      </li>
+    </ul>
+  </main>
+
+  <footer>
+    <form [formGroup]="form" (ngSubmit)="onSubmit()">
+      <input type="text" formControlName="title">
+
+      <button [disabled]="form.invalid" type="submit" class="btn btn-block btn-primary">Add</button>
+    </form>
+  </footer>
+</section>
