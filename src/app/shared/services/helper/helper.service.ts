@@ -1,17 +1,17 @@
 import {Injectable} from '@angular/core';
 import * as moment from "moment";
-import {Week} from "../../interfaces";
+import {IWeek} from "../../interfaces";
 
 @Injectable({
   providedIn: 'root'
 })
 export class HelperService {
 
-  public generate(now: moment.Moment): Week[] {
+  public generate(now: moment.Moment): IWeek[] {
     const startDay = now.clone().startOf('month').startOf('isoWeek');
     const endDay = now.clone().endOf('month').endOf('isoWeek');
     const date = startDay.clone().subtract(1, 'day');
-    const calendar: Week[] = [];
+    const calendar: IWeek[] = [];
 
     while (date.isBefore(endDay, 'day')) {
       calendar.push({

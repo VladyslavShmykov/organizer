@@ -6,15 +6,21 @@
 
 
   <main>
-    <ul>
-      <li class="task flex jcsb aic">
+    <ul *ngIf="tasks.length; else noTasks">
+      <li
+        *ngFor="let task of tasks; index as i"
+        class="task flex jcsb aic">
         <span>
-          <strong>1</strong>
-          asdasd
+          <strong>{{i + 1}}</strong>
+          {{task.title}}
         </span>
-        <button class="btn btn-primary">remove</button>
+        <button (click)="onRemove(task)" class="btn btn-primary">remove</button>
       </li>
     </ul>
+
+    <ng-template #noTasks>
+      <p class="text-center">No tasks yet...</p>
+    </ng-template>
   </main>
 
   <footer>

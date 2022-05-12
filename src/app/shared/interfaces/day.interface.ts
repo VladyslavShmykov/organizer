@@ -1,6 +1,6 @@
 import * as moment from "moment";
 
-export interface Day {
+export interface IDay {
   value: moment.Moment;
   active: boolean;
   disabled: boolean;

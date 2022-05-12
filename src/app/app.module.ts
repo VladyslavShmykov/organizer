@@ -1,13 +1,14 @@
-import { NgModule } from '@angular/core';
-import { BrowserModule } from '@angular/platform-browser';
+import {NgModule} from '@angular/core';
+import {BrowserModule} from '@angular/platform-browser';
 
-import { AppRoutingModule } from './app-routing.module';
-import { AppComponent } from './app.component';
-import { CalendarComponent } from './calendar/calendar.component';
-import { SelectorComponent } from './selector/selector.component';
-import { OrganizerComponent } from './organizer/organizer.component';
-import { MomentPipe } from './shared/pipes/moment.pipe';
+import {AppRoutingModule} from './app-routing.module';
+import {AppComponent} from './app.component';
+import {CalendarComponent} from './calendar/calendar.component';
+import {SelectorComponent} from './selector/selector.component';
+import {OrganizerComponent} from './organizer/organizer.component';
+import {MomentPipe} from './shared/pipes/moment.pipe';
 import {ReactiveFormsModule} from "@angular/forms";
+import {HttpClientModule} from "@angular/common/http";
 
 @NgModule({
   declarations: [
@@ -17,12 +18,14 @@ import {ReactiveFormsModule} from "@angular/forms";
     OrganizerComponent,
     MomentPipe
   ],
-    imports: [
-        BrowserModule,
-        AppRoutingModule,
-        ReactiveFormsModule
-    ],
+  imports: [
+    BrowserModule,
+    AppRoutingModule,
+    ReactiveFormsModule,
+    HttpClientModule,
+  ],
   providers: [],
   bootstrap: [AppComponent]
 })
-export class AppModule { }
+export class AppModule {
+}

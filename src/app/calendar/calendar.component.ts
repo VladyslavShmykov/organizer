@@ -1,5 +1,5 @@
 import {Component, OnDestroy, OnInit} from '@angular/core';
-import {Day, Week} from "../shared/interfaces";
+import {IDay, IWeek} from "../shared/interfaces";
 import {DateService} from "../shared/services/date/date.service";
 import {Subject, takeUntil} from "rxjs";
 import {HelperService} from "../shared/services/helper/helper.service";
@@ -13,7 +13,7 @@ export class CalendarComponent implements OnInit, OnDestroy {
 
   private destroy$: Subject<boolean> = new Subject<boolean>();
 
-  public calendar: Week[];
+  public calendar: IWeek[];
 
   constructor(
     private dateService: DateService,
@@ -28,7 +28,7 @@ export class CalendarComponent implements OnInit, OnDestroy {
 
   }
 
-  public onSelectDay(day: Day): void {
+  public onSelectDay(day: IDay): void {
     this.dateService.changeDate(day.value);
   }
 

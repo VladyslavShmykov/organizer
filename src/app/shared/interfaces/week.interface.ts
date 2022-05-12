@@ -1,5 +1,5 @@
-import {Day} from "./day.interface";
+import {IDay} from "./day.interface";
 
-export interface Week {
-  days: Day[];
+export interface IWeek {
+  days: IDay[];
 }
