@@ -1,8 +1,8 @@
 import {Component, /*OnDestroy,*/ OnInit} from '@angular/core';
-import {DateService} from "../shared/services/date/date.service";
+import {DateService} from "../../shared/services/date/date.service";
 import {FormBuilder, FormControl, FormGroup, Validators} from "@angular/forms";
-import {TaskService} from "../shared/services/task/task.service";
-import {ITask} from "../shared/interfaces";
+import {TaskService} from "../../shared/services/task/task.service";
+import {ITask} from "../../shared/interfaces";
 import {catchError, /*Subject,*/ switchMap, take/*, takeUntil*/} from "rxjs";
 
 @Component({

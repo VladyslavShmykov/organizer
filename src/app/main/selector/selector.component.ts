@@ -1,5 +1,5 @@
 import {Component} from '@angular/core';
-import {DateService} from "../shared/services/date/date.service";
+import {DateService} from "../../shared/services/date/date.service";
 import * as moment from "moment";
 
 @Component({

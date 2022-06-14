@@ -1,8 +1,8 @@
 import {Component, OnDestroy, OnInit} from '@angular/core';
-import {IDay, IWeek} from "../shared/interfaces";
-import {DateService} from "../shared/services/date/date.service";
+import {IDay, IWeek} from "../../shared/interfaces";
+import {DateService} from "../../shared/services/date/date.service";
 import {Subject, takeUntil} from "rxjs";
-import {HelperService} from "../shared/services/helper/helper.service";
+import {HelperService} from "../../shared/services/helper/helper.service";
 
 @Component({
   selector: 'app-calendar',
