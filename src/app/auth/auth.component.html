@@ -1,1 +1,20 @@
-<p>auth works!</p>
+<div>
+  <h2>
+    <span
+      class="sign-title"
+      (click)="onChangeMethod('sign In')"
+      [class.active]="signType === 'sign In'"
+    >Sign In</span>
+    /
+    <span
+      class="sign-title"
+      (click)="onChangeMethod('sign Up')"
+      [class.active]="signType === 'sign Up'"
+    >Sign Up</span>
+  </h2>
+  <form [formGroup]="credentialsForm" (ngSubmit)="onSubmit()">
+    <input class="input" formControlName="email" type="email">
+    <input class="input" formControlName="pass" type="password">
+    <button class="button" type="submit">{{signType}}</button>
+  </form>
+</div>
