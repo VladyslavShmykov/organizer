@@ -3,6 +3,7 @@ import {HttpClient} from "@angular/common/http";
 import {ITask} from "../../interfaces";
 import {map, Observable} from "rxjs";
 import * as moment from "moment";
+import {AngularFirestore} from "@angular/fire/compat/firestore";
 
 @Injectable({
   providedIn: 'root'
@@ -12,7 +13,8 @@ export class TaskService {
   static url = 'https://angular-organizer-id26091994-default-rtdb.europe-west1.firebasedatabase.app/tasks';
 
   constructor(
-    private http: HttpClient
+    private http: HttpClient,
+    private AFStore: AngularFirestore,
   ) {
   }
 
@@ -22,15 +24,17 @@ export class TaskService {
       .pipe(map(res => ({...task, id: res.name})));
   }
 
-  public readByDate(date: moment.Moment): Observable<ITask[]> {
-    return this.http
-      .get<any>(`${TaskService.url}/${date.format('DD-MM-YYYY')}.json`)
-      .pipe(map(tasks => {
-        if (!tasks) {
-          return [];
-        }
-        return Object.keys(tasks).map(key => ({...tasks[key], id: key}))
-      }));
+  public readByDate(date?: moment.Moment)/*: Observable<ITask[]>*/ {
+    return this.AFStore.collection("tasks").valueChanges().subscribe(value => console.log(value))
+
+    // return this.http
+    //   .get<any>(`${TaskService.url}/${date.format('DD-MM-YYYY')}.json`)
+    //   .pipe(map(tasks => {
+    //     if (!tasks) {
+    //       return [];
+    //     }
+    //     return Object.keys(tasks).map(key => ({...tasks[key], id: key}))
+    //   }));
   }
   //
   // public update() {

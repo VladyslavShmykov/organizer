@@ -1,6 +1,6 @@
 import {Component, OnInit} from '@angular/core';
 import {FormBuilder, FormControl, FormGroup} from "@angular/forms";
-import {AuthService} from "../shared/services/firebase/auth.service";
+import {AuthService} from "../shared/services/auth/auth.service";
 
 type signType = 'sign In' | 'sign Up';
 

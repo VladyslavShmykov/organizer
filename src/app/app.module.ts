@@ -6,6 +6,8 @@ import {AppComponent} from './app.component';
 import {HttpClientModule} from "@angular/common/http";
 import {AngularFireModule} from "@angular/fire/compat";
 import {environment as env} from "../environments/environment";
+import {AngularFireDatabaseModule} from "@angular/fire/compat/database";
+import {AngularFirestoreModule} from "@angular/fire/compat/firestore";
 
 @NgModule({
   declarations: [
@@ -16,6 +18,8 @@ import {environment as env} from "../environments/environment";
     AppRoutingModule,
     HttpClientModule,
     AngularFireModule.initializeApp(env.firebase),
+    AngularFireDatabaseModule,
+    AngularFirestoreModule,
   ],
   providers: [],
   bootstrap: [AppComponent]

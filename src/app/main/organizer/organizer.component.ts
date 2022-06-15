@@ -26,11 +26,13 @@ export class OrganizerComponent implements OnInit/*, OnDestroy*/ {
 
   ngOnInit(): void {
     this.initForm();
-    this.dateService.date.pipe(
-      switchMap(value => this.taskService.readByDate(value))
-    ).subscribe(tasks => {
-      this.tasks = tasks;
-    });
+    this.taskService.readByDate();
+    // this.dateService.date.pipe(
+    //   switchMap(value => this.taskService.readByDate(value))
+    // ).subscribe(tasks => {
+    //   // this.tasks = tasks;
+    //   console.log(tasks)
+    // });
   }
 
   public get getDate(): moment.Moment {
