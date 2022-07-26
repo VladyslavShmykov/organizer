@@ -7,7 +7,7 @@ import {Router} from "@angular/router";
 })
 export class AuthService {
 
-  public isLoggedIn = false
+  public isLoggedIn = false;
 
   constructor(
     private firebaseAuth: AngularFireAuth,

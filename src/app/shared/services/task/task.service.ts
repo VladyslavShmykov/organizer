@@ -1,16 +1,16 @@
 import {Injectable} from '@angular/core';
 import {HttpClient} from "@angular/common/http";
-import {ITask} from "../../interfaces";
+import {ITask, IUser} from "../../interfaces";
 import {map, Observable} from "rxjs";
 import * as moment from "moment";
-import {AngularFirestore} from "@angular/fire/compat/firestore";
+import {AngularFirestore, DocumentReference} from "@angular/fire/compat/firestore";
 
 @Injectable({
   providedIn: 'root'
 })
 export class TaskService {
 
-  static url = 'https://angular-organizer-id26091994-default-rtdb.europe-west1.firebasedatabase.app/tasks';
+  private user: IUser = JSON.parse(localStorage.getItem('user') as string);
 
   constructor(
     private http: HttpClient,
@@ -18,31 +18,32 @@ export class TaskService {
   ) {
   }
 
-  public create(task: ITask): Observable<ITask> {
-    return this.http
-      .post<{ name: string }>(`${TaskService.url}/${task.date}.json`, task)
-      .pipe(map(res => ({...task, id: res.name})));
+  public async create(task: ITask): Promise<DocumentReference> {
+
+    return this.AFStore
+      .collection('users')
+      .doc(this.user.uid)
+      .collection('tasks')
+      .add(task);
   }
 
-  public readByDate(date?: moment.Moment)/*: Observable<ITask[]>*/ {
-    return this.AFStore.collection("tasks").valueChanges().subscribe(value => console.log(value))
+  public readByDate(date: moment.Moment): Observable<ITask[]> {
 
-    // return this.http
-    //   .get<any>(`${TaskService.url}/${date.format('DD-MM-YYYY')}.json`)
-    //   .pipe(map(tasks => {
-    //     if (!tasks) {
-    //       return [];
-    //     }
-    //     return Object.keys(tasks).map(key => ({...tasks[key], id: key}))
-    //   }));
+    return this.AFStore
+      .collection('users')
+      .doc(this.user.uid)
+      .collection('tasks', ref => ref.where('date', '==', date.format('DD-MM-YYYY')))
+      .get()
+      .pipe(map(value => value.docs.map(val => <ITask>val.data())));
   }
-  //
-  // public update() {
-  //
-  // }
 
-  public delete(task: ITask): Observable<void> {
-    return this.http
-      .delete<void>(`${TaskService.url}/${task.date}/${task.id}.json`);
+  public delete(task: ITask): Observable<DocumentReference> {
+
+    return this.AFStore
+      .collection('users')
+      .doc(this.user.uid)
+      .collection('tasks', ref => ref.where('id', '==', task.id))
+      .get()
+      .pipe(map(value => value.docs[0].ref));
   }
 }
