@@ -13,8 +13,22 @@
     >Sign Up</span>
   </h2>
   <form [formGroup]="credentialsForm" (ngSubmit)="onSubmit()">
-    <input class="input" formControlName="email" type="email">
-    <input class="input" formControlName="pass" type="password">
+    <app-input
+      autocomplete="email"
+      class="input"
+      formControlName="email"
+      type="email"
+      labelText="Login"
+      placeholder="Write your email...">
+    </app-input>
+    <app-input
+      autocomplete="new-password"
+      class="input"
+      formControlName="pass"
+      type="password"
+      labelText="Password"
+      placeholder="Write your password...">
+    </app-input>
     <button class="button" type="submit">{{signType}}</button>
   </form>
 </div>

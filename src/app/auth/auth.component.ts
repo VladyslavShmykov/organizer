@@ -28,7 +28,7 @@ export class AuthComponent implements OnInit {
     return this.credentialsForm = this.fb.group({
       email: new FormControl(''),
       pass: new FormControl(''),
-    })
+    });
   }
 
   public async onSubmit() {
