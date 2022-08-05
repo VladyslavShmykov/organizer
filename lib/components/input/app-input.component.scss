@@ -1,0 +1,90 @@
+:host {
+  .input-container {
+    position: relative;
+    margin-bottom: 1.4rem;
+
+    .label {
+      position: absolute;
+      left: 1rem;
+      top: 1rem;
+      transition: 300ms;
+      cursor: text;
+      font-style: italic;
+    }
+
+    .active-label {
+      top: .1rem;
+      font-size: .7rem;
+    }
+
+    .active-placeholder {
+      z-index: -1;
+      opacity: 0;
+    }
+
+    .border-bottom {
+      position: absolute;
+      bottom: 0;
+      width: 0;
+      height: 2px;
+      transition: all 300ms;
+      background: blue;
+    }
+
+    .input {
+      border: none;
+      border-bottom: 2px solid #cccccc;
+      border-top-right-radius: .6rem;
+      border-top-left-radius: .6rem;
+      padding: 1.1rem 1rem .5rem 1rem;
+    }
+
+    .placeholder {
+      position: absolute;
+      top: 1.1rem;
+      left: 1rem;
+      font-size: .9rem;
+      transition: 300ms;
+      z-index: -1;
+      opacity: 0;
+    }
+
+    .error {
+      position: absolute;
+      font-size: .8rem;
+      color: red;
+      z-index: -1;
+      transition: 300ms;
+      opacity: 0;
+      bottom: 0;
+    }
+
+    .active-error {
+      opacity: 1;
+      bottom: -1.2rem;
+    }
+
+    .input:focus ~ .border-bottom {
+      width: 100%;
+    }
+
+    .input:focus ~ .label {
+      @extend .active-label
+    }
+
+    .input:focus:not(.has-value) ~ .placeholder {
+      z-index: 0;
+      opacity: 1;
+    }
+  }
+
+  .invalid {
+    .border-bottom {
+      background-color: red;
+    }
+
+    .label {
+      color: red;
+    }
+  }
+}

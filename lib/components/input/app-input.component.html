@@ -1,0 +1,28 @@
+<div class="input-container" [class.invalid]="!isValid && control.dirty">
+
+  <input
+    #inputElement
+    [id]="id"
+    [type]="type"
+    [disabled]="disable"
+    [autocomplete]="autocomplete"
+    class="input"
+    [class.has-value]="value"
+    [maxlength]="maxLength"
+    [minlength]="minLength"
+    [(ngModel)]="value"
+    (ngModelChange)="onChange($event)">
+
+  <div class="error" [class.active-error]="errorMassage && !isValid && control.dirty">{{errorMassage}}</div>
+
+  <label
+    [class.active-label]="value"
+    [for]="id"
+    class="label"
+  >{{labelText}}</label>
+
+  <div class="placeholder" [class.active-placeholder]="value">{{placeholder}}</div>
+
+  <div class="border-bottom"></div>
+
+</div>

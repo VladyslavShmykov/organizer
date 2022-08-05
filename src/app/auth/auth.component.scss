@@ -4,16 +4,17 @@
   justify-items: center;
   align-items: center;
 
-  .active {
-    color: blue;
+  .title {
+    color: black;
+    margin-bottom: 1rem;
+    text-transform: capitalize;
   }
 
-  .sign-title {
+  .sign-up-button {
     cursor: pointer;
-  }
-
-  .input {
-    border-radius: 5px;
+    margin-bottom: 1rem;
+    text-decoration: underline;
+    color: blue;
   }
 
   .button {
@@ -23,6 +24,10 @@
     border: 0.5px solid #cccccc;
     border-radius: 5px;
     font-size: 1.5rem;
+    cursor: not-allowed;
+  }
+
+  .button:not(:disabled) {
     cursor: pointer;
   }
 }
