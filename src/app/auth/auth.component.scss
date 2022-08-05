@@ -24,6 +24,10 @@
     border: 0.5px solid #cccccc;
     border-radius: 5px;
     font-size: 1.5rem;
+    cursor: not-allowed;
+  }
+
+  .button:not(:disabled) {
     cursor: pointer;
   }
 }

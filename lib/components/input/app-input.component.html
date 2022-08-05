@@ -1,4 +1,4 @@
-<div class="input-container">
+<div class="input-container" [class.invalid]="!isValid && control.dirty">
 
   <input
     #inputElement
@@ -12,6 +12,8 @@
     [minlength]="minLength"
     [(ngModel)]="value"
     (ngModelChange)="onChange($event)">
+
+  <div class="error" [class.active-error]="errorMassage && !isValid && control.dirty">{{errorMassage}}</div>
 
   <label
     [class.active-label]="value"

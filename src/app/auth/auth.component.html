@@ -10,6 +10,7 @@
       formControlName="email"
       type="email"
       labelText="Login"
+      [errorMassage]="emailErrorText"
       placeholder="Write your email...">
     </app-input>
 
@@ -19,12 +20,13 @@
       formControlName="pass"
       type="password"
       labelText="Password"
+      [errorMassage]="passwordErrorText"
       placeholder="Write your password...">
     </app-input>
 
     <p (click)="changeMethod()" class="sign-up-button">{{messageText}}</p>
 
-    <button class="button" type="submit">{{signType}}</button>
+    <button [disabled]="credentialsForm.invalid" class="button" type="button">{{signType}}</button>
 
   </form>
 </div>

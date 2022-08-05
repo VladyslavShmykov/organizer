@@ -7,7 +7,7 @@ import {
   OnInit,
   ViewChild
 } from '@angular/core';
-import {ControlValueAccessor, NG_VALUE_ACCESSOR} from "@angular/forms";
+import {ControlValueAccessor, FormControl, NG_VALIDATORS, NG_VALUE_ACCESSOR, ValidationErrors} from "@angular/forms";
 import {Subject} from "rxjs";
 
 @Component({
@@ -19,7 +19,12 @@ import {Subject} from "rxjs";
       provide: NG_VALUE_ACCESSOR,
       useExisting: forwardRef(() => AppInputComponent),
       multi: true
-    }
+    },
+    {
+      provide: NG_VALIDATORS,
+      useExisting: forwardRef(() => AppInputComponent),
+      multi: true,
+    },
   ]
 })
 export class AppInputComponent implements OnInit, OnDestroy, ControlValueAccessor{
@@ -42,11 +47,14 @@ export class AppInputComponent implements OnInit, OnDestroy, ControlValueAccesso
   disable: boolean;
   @Input()
   autocomplete: string = '';
+  @Input()
+  errorMassage: string = '';
 
   @ViewChild('inputElement') private input: ElementRef;
 
   private $destroy: Subject<boolean> = new Subject<boolean>();
 
+  public control: FormControl;
   public onChange: (value: string) => void = () => {};
   public onTouched: () => void = () => {};
 
@@ -55,6 +63,19 @@ export class AppInputComponent implements OnInit, OnDestroy, ControlValueAccesso
 
   ngOnInit(): void {
 
+  }
+
+  public get isValid(): boolean {
+    return this.control &&
+      !this.control.pending &&
+      !this.control.errors &&
+      !this.control.invalid;
+  }
+
+  validate(control: FormControl): ValidationErrors | null {
+    this.control = control;
+
+    return control.valid ? null : control.errors;
   }
 
   writeValue(value: string): void {
