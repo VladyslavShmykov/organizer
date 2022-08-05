@@ -1,18 +1,9 @@
 <div>
-  <h2>
-    <span
-      class="sign-title"
-      (click)="onChangeMethod('sign In')"
-      [class.active]="signType === 'sign In'"
-    >Sign In</span>
-    /
-    <span
-      class="sign-title"
-      (click)="onChangeMethod('sign Up')"
-      [class.active]="signType === 'sign Up'"
-    >Sign Up</span>
-  </h2>
+
+  <h1 class="title text-center">{{signType}}</h1>
+
   <form [formGroup]="credentialsForm" (ngSubmit)="onSubmit()">
+
     <app-input
       autocomplete="email"
       class="input"
@@ -21,6 +12,7 @@
       labelText="Login"
       placeholder="Write your email...">
     </app-input>
+
     <app-input
       autocomplete="new-password"
       class="input"
@@ -29,6 +21,10 @@
       labelText="Password"
       placeholder="Write your password...">
     </app-input>
+
+    <p (click)="changeMethod()" class="sign-up-button">{{messageText}}</p>
+
     <button class="button" type="submit">{{signType}}</button>
+
   </form>
 </div>

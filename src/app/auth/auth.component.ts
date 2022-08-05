@@ -20,15 +20,23 @@ export class AuthComponent implements OnInit {
   ) {
   }
 
-  ngOnInit(): void {
-    this.initForm();
+  public get messageText(): string {
+
+    switch (this.signType) {
+      case "sign In": {
+        return 'If you do not have an account, please Sign Up';
+      }
+      case "sign Up": {
+        return 'If you already have an account, please Sign In';
+      }
+      default: {
+        return '';
+      }
+    }
   }
 
-  private initForm(): FormGroup {
-    return this.credentialsForm = this.fb.group({
-      email: new FormControl(''),
-      pass: new FormControl(''),
-    });
+  ngOnInit(): void {
+    this.initForm();
   }
 
   public async onSubmit() {
@@ -48,7 +56,14 @@ export class AuthComponent implements OnInit {
     }
   }
 
-  public onChangeMethod(type: signType) {
-    this.signType = type;
+  public changeMethod() {
+    this.signType = this.signType === 'sign In' ? 'sign Up' : 'sign In';
+  }
+
+  private initForm(): FormGroup {
+    return this.credentialsForm = this.fb.group({
+      email: new FormControl(''),
+      pass: new FormControl(''),
+    });
   }
 }
